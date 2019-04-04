@@ -4,6 +4,10 @@ import {
 } from 'react-bootstrap'
 
 class Cats extends Component {
+    handleDelete = (cat) => {
+        this.props.delete(cat)
+    }
+
   render() {
     return (
 	<Container>
@@ -22,6 +26,7 @@ class Cats extends Component {
                     <span className='cat-enjoys'>
                       {cat.enjoys}
                     </span>
+                    <button id="submit" type="submit" onClick={() => this.handleDelete(cat.id)}>Delete Cat Profile</button>
                   </ListGroupItem>)})}
             </ListGroup>
           </Col>

@@ -3,48 +3,57 @@ import React, { Component } from 'react'
 import Header from "./components/Header"
 import Cats from "./components/Cats"
 import NewCat from "./components/NewCat"
+import { getCats } from "./api/index"
+import { createCat } from "./api/index"
+import { destroyCat } from "./api/index"
 
 class App extends Component {
     constructor(props){
-    super(props)
-    this.state = {
-      cats: [
-        {
-          id: 1,
-          name: 'Morris',
-          age: 2,
-          enjoys: "Long walks on the beach."
-        },
-        {
-          id: 2,
-          name: 'Paws',
-          age: 4,
-          enjoys: "Snuggling by the fire."
-        },
-        {
-          id: 3,
-          name: 'Mr. Meowsalot',
-          age: 12,
-          enjoys: "Being in charge."
+        super(props)
+        this.state = {
+            cats: []
         }
-      ]
     }
+
+	componentWillMount() {
+		getCats().then(APIcats => {
+			this.setState({
+				cats: APIcats
+			})
+		})
+	}
+
+  update = (add) => {
+      createCat(add).then(APIcats => {
+          this.setState({
+              cats: APIcats
+          })
+      })
   }
-  
-  update(add) {
-      let {cats} = this.state
-      cats.push(add)
-      this.setState({cats: cats})
+
+  delete = (cat) => {
+      destroyCat(cat).then(APIcats => {
+          this.setState({
+              cats: APIcats
+          })
+      })
   }
+
+  handleNewCat(newCatInfo) {
+	createCat(newCatInfo)
+    .then(successCat => {
+        console.log("SUCCESS! New cat: ", successCat);
+    })
+}
 
   render() {
     return (
 		<div>
 			<Header />
             <br />
-			<Cats cats={this.state.cats} update={this.update}/>
+			<Cats cats={this.state.cats} delete={this.delete}/>
             <br />
-			<NewCat cats={this.state.cats}/>
+			<NewCat cats={this.state.cats} update={this.update}/>
 		</div>
     );
   }

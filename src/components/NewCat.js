@@ -16,19 +16,13 @@ class NewCat extends Component {
     }
 
     handleChange(event){
-      let {form } = this.state
+      let {form} = this.state
       form[event.target.name] = event.target.value
       this.setState({form: form})
     }
-    handleAgeChange(event){
-      let {form } = this.state
-      form[event.target.age] = event.target.value
-      this.setState({form: form})
-    }
-    handleEnjoysChange(event){
-      let {form } = this.state
-      form[event.target.enjoys] = event.target.value
-      this.setState({form: form})
+
+    handleUpdate = () => {
+        this.props.update(this.state.form)
     }
 
     render () {
@@ -55,7 +49,7 @@ class NewCat extends Component {
                             <FormControl
                               type="number"
                               name="age"
-                              onChange={this.handleAgeChange.bind(this)}
+                              onChange={this.handleChange.bind(this)}
                               value={this.state.form.age}
                             />
                         </Form.Group>
@@ -67,12 +61,12 @@ class NewCat extends Component {
                         <FormControl
                           type="text"
                           name="enjoys"
-                          onChange={this.handleEnjoysChange.bind(this)}
+                          onChange={this.handleChange.bind(this)}
                           value={this.state.form.enjoys}
                         />
                     </Form.Group>
 
-                    <button id="submit" type="submit" onClick={()=>this.props.update(this.state.form)}>Create Cat Profile</button>
+                    <button id="submit" type="submit" onClick={this.handleUpdate}>Create Cat Profile</button>
                     </Form>
                 </Col>
             </Row>
