@@ -1,11 +1,24 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import NewModal from "./NewModal"
 import {
   Col, Container, Row, ListGroupItem, ListGroup
 } from 'react-bootstrap'
 
 class Cats extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            cat: ""
+        }
+    }
+
     handleDelete = (cat) => {
         this.props.delete(cat)
+    }
+
+    toggleModal = (cat) => {
+        this.props.toggle()
+        this.setState({cat: cat})
     }
 
   render() {
@@ -27,7 +40,13 @@ class Cats extends Component {
                       {cat.enjoys}
                     </span>
                     <button id="submit" type="submit" onClick={() => this.handleDelete(cat.id)}>Delete Cat Profile</button>
-                  </ListGroupItem>)})}
+
+                    <button onClick={() => this.toggleModal(cat)}>
+                        Cat Info
+                    </button>
+                    <NewModal cat={this.state.cat} isOpen={this.props.isOpen} toggle={this.props.toggle}/>
+                  </ListGroupItem>)
+              })}
             </ListGroup>
           </Col>
       </Row>

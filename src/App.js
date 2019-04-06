@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Modal from 'react-bootstrap/Modal'
 
 import Header from "./components/Header"
 import Cats from "./components/Cats"
@@ -11,8 +12,16 @@ class App extends Component {
     constructor(props){
         super(props)
         this.state = {
-            cats: []
+            cats: [],
+            isOpen: false
         }
+    }
+
+    toggleModal = () =>{
+        let state = (this.state.isOpen ? false : true)
+        this.setState({
+          isOpen: state
+        })
     }
 
 	componentWillMount() {
@@ -51,7 +60,7 @@ class App extends Component {
 		<div>
 			<Header />
             <br />
-			<Cats cats={this.state.cats} delete={this.delete}/>
+			<Cats cats={this.state.cats} delete={this.delete} toggle={this.toggleModal} isOpen={this.state.isOpen}/>
             <br />
 			<NewCat cats={this.state.cats} update={this.update}/>
 		</div>

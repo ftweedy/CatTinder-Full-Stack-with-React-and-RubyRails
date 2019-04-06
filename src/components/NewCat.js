@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {
-  Col, Container, Row, ListGroupItem, ListGroup, FormControl, Form
+  Col, Container, Row, FormControl, Form
 } from 'react-bootstrap'
 
 class NewCat extends Component {
