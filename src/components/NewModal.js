@@ -1,8 +1,5 @@
 import React, {Component} from 'react'
 import Modal from 'react-bootstrap/Modal'
-import {
-  Col, Container, Row, ListGroupItem, ListGroup, FormControl, Form
-} from 'react-bootstrap'
 
 class NewModal extends Component {
     toggleModal = () => {
@@ -17,7 +14,7 @@ class NewModal extends Component {
                 <Modal.Title>Cat Info</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                {this.props.cat.name}
+                The name is {this.props.cat.name}.  The age is {this.props.cat.age} years old and the cat enjoys {this.props.cat.enjoys}.
             </Modal.Body>
             <Modal.Footer>
                 <button onClick={this.toggleModal}>
