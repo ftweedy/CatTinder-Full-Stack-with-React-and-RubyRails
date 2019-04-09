@@ -17,7 +17,6 @@ class CatsController < ApplicationController
     def update
         cat = Cat.find(params[:id])
         cat.update(name: params[:name], age: params[:age], enjoys: params[:enjoys])
-        # cat.save
         cats = Cat.all
         render json: cats
     end

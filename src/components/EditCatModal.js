@@ -9,9 +9,9 @@ class EditCatModal extends Component {
       super(props)
       this.state = {
         form:{
-            name: this.props.cat.name,
-            age: this.props.cat.age,
-            enjoys: this.props.cat.enjoys
+            name: "",
+            age: "",
+            enjoys: ""
         }
       }
     }
@@ -26,6 +26,10 @@ class EditCatModal extends Component {
         this.props.toggle()
     }
 
+    defaultState = () => {
+        this.setState({form: this.props.cat})
+    }
+
     handleUpdate = () => {
         this.props.edit(this.state.form, this.props.id)
     }
@@ -33,7 +37,7 @@ class EditCatModal extends Component {
     render() {
     return(
         <div>
-        <Modal show={this.props.isEdit} onHide={this.toggleModal}>
+        <Modal show={this.props.isEdit} onHide={this.toggleModal} onShow={this.defaultState}>
         <Col xs={12}>
             <Form>
             <Form.Row>

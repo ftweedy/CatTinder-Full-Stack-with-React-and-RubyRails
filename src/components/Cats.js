@@ -44,17 +44,17 @@ class Cats extends Component {
                       </h4>
                     <span className='cat-enjoys'>
                       {cat.enjoys}
-                    </span>
-                    <button id="submit" type="submit" onClick={() => this.handleDelete(cat.id)}>Delete Cat Profile</button>
+                    </span> {''}
 
+                    <button id="submit" type="submit" onClick={() => this.handleDelete(cat.id)}>Delete Cat Profile</button> {''}
                     <button onClick={() => this.toggleModal(cat)}>
                         Cat Info
-                    </button>
-                    <NewModal cat={this.state.cat} isOpen={this.props.isOpen} toggle={this.props.toggle}/>
-
+                    </button> {''}
                     <button onClick={() => this.toggleEdit(cat, cat.id)}>
                         Edit Cat
                     </button>
+
+                    <NewModal cat={this.state.cat} isOpen={this.props.isOpen} toggle={this.props.toggle}/>
                     <EditCatModal cat={this.state.cat} id={this.state.id} edit={this.props.edit} isEdit={this.props.isEdit} toggle={this.props.toggleEdit}/>
                   </ListGroupItem>)
               })}
