@@ -1,6 +1,7 @@
 class CatsController < ApplicationController
     def index
         cats = Cat.all
+        puts "test"
         render json: cats
     end
 
